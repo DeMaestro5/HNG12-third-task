@@ -1,4 +1,19 @@
-from app.main import app
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-# This line is important for Gunicorn to find the app
-application = app
+app = FastAPI()
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+
+# No need for the uvicorn runner in production
