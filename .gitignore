@@ -1,5 +1,21 @@
+# Virtual Environment
 venv/
-__pycache__/
 *.pyc
-.env
+__pycache__/
+
+# macOS system files
 .DS_Store
+
+# pytest cache
+.pytest_cache/
+
+# Cloudflare and deployment files
+.wrangler/
+
+# Logs and databases
+*.log
+*.sqlite
+
+# Environment files
+.env
+EOF
