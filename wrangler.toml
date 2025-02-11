@@ -1,9 +1,10 @@
 [build]
-command = "python -m pip install -r requirements.txt"
-pages_build_output_dir = "app"
+command = "pip install -r requirements.txt"
+pages_build_output_dir = "public"
 
 [site]
-bucket = "./app"
+bucket = "./public"
 
-[env.production]
-name = "fastapi-app"
+[[routes]]
+pattern = "/api/*"
+script = "functions/api/index.py"
