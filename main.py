@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.database import books_db
+from app.routers import books
 
 app = FastAPI()
 
@@ -12,8 +14,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Include the books router
+app.include_router(books.router, prefix="/books", tags=["books"])
+
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
-
-# No need for the uvicorn runner in production
+    """Return all books in the database"""
+    return {
+        "books": books_db
+    }
