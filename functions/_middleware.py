@@ -1,3 +1,4 @@
+# functions/_middleware.py
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.main import app
@@ -10,5 +11,5 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-def handle_request(request):
-    return app(request)
+def onRequest(context):
+    return app(context["request"])

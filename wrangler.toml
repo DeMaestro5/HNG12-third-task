@@ -1,2 +1,9 @@
-[pages]
-framework = "python"
+[build]
+command = "python -m pip install -r requirements.txt"
+pages_build_output_dir = "app"
+
+[site]
+bucket = "./app"
+
+[env.production]
+name = "fastapi-app"
