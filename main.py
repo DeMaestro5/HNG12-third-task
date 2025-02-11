@@ -1,11 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.database import books_db
 from app.routers import books
 
 app = FastAPI()
 
-# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -14,12 +12,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include the books router
-app.include_router(books.router, prefix="/books", tags=["books"])
+# Include the books router with the correct prefix
+app.include_router(books.router, prefix="/api/v1/books", tags=["books"])
 
 @app.get("/")
 async def root():
-    """Return all books in the database"""
-    return {
-        "books": books_db
-    }
+    return {"message": "Welcome to the Book API. Use /api/v1/books/{book_id} to get book details"}
